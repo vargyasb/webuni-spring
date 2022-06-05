@@ -57,21 +57,18 @@ public class AirportController {
 		Airport airport = airportService.save(airportMapper.dtoToAirport(airportDto));
 		return airportMapper.airportToDtos(airport);
 	}
-//
-//	@PutMapping("/{id}")
-//	public ResponseEntity<AirportDto> modifyAirport(@PathVariable long id, @RequestBody @Valid AirportDto airportDto) {
-//		if (!airports.containsKey(id)) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		checkUniqueIata(airportDto.getIata());
-//		airportDto.setId(id);
-//		airports.put(id, airportDto);
-//		return ResponseEntity.ok(airportDto);
-//	}
-//
-//
-//	@DeleteMapping("/{id}")
-//	public void deleteAirport(@PathVariable long id) {
-//		airports.remove(id);
-//	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<AirportDto> modifyAirport(@PathVariable long id, @RequestBody @Valid AirportDto airportDto) {
+		Airport airport = airportMapper.dtoToAirport(airportDto);
+		airport.setId(id);
+		AirportDto savedAirportDto = airportMapper.airportToDtos(airportService.update(airport));
+		return ResponseEntity.ok(savedAirportDto);
+	}
+
+
+	@DeleteMapping("/{id}")
+	public void deleteAirport(@PathVariable long id) {
+		airportService.delete(id);
+	}
 }
