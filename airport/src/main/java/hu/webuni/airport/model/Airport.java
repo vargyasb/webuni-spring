@@ -7,8 +7,8 @@ import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
 
 @Entity
-@NamedQuery(name = "Airport.countByIata", query = "SELECT COUNT(a.id) FROM Airport a WHERE a.iata = :iata")
-@NamedQuery(name = "Airport.countByIataAndNotIn", query = "SELECT COUNT(a.id) FROM Airport a WHERE a.iata = :iata AND a.id != :id")
+//@NamedQuery(name = "Airport.countByIata", query = "SELECT COUNT(a.id) FROM Airport a WHERE a.iata = :iata")
+//@NamedQuery(name = "Airport.countByIataAndNotIn", query = "SELECT COUNT(a.id) FROM Airport a WHERE a.iata = :iata AND a.id != :id")
 public class Airport {
 
 	@Id
@@ -22,9 +22,7 @@ public class Airport {
 	public Airport() {
 	}
 
-	public Airport(long id, String name, String iata) {
-		super();
-		this.id = id;
+	public Airport(String name, String iata) {
 		this.name = name;
 		this.iata = iata;
 	}
